@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a reproducible problem that is not a false positive or missed detection.
+title: "[Bug]: "
+labels: ["bug", "needs-repro"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Before submitting
+      options:
+        - label: I searched open and closed issues.
+          required: true
+        - label: I reproduced this on the latest release.
+          required: true
+        - label: I removed tokens, credentials, URLs, and private paths from all output.
+          required: true
+  - type: input
+    attributes:
+      label: Headless Guard version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: macOS and Mac
+      placeholder: macOS 15.5, Apple M-series / Intel
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Interface
+      options: [App, Menu bar, CLI scan, CLI rescue, CLI watch, Packaging]
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Redacted diagnostics
+      description: Paste `headless-guard doctor` and only safe, redacted details.
