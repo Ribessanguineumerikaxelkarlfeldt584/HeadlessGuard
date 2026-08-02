@@ -11,7 +11,7 @@ permissions:
 jobs:
   test:
     name: Swift tests and release build
-    runs-on: macos-14
+    runs-on: macos-15
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
